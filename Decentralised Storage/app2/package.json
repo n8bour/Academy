@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "ipfs": "^0.55.3",
-    "it-all": "^1.0.5"
+    "express": "^4.17.3",
+    "ipfs": "^0.55.4",
+    "it-all": "^1.0.6"
   }
 }

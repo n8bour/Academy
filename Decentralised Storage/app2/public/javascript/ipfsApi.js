@@ -17,6 +17,7 @@ const ipfsApi = {
     }
   },
   async ipfsAdd(data) {
+    console.log(data)
     try {
       return await node.add(data);
     } catch (e) {

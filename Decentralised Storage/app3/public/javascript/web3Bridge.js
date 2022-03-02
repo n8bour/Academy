@@ -35,21 +35,21 @@ async function addFile() {
 }
 
 async function addData(newData) {
-  const route = 'addData';
-  const req = { data: newData };
-  function update(response) {
-    $('#output-text').val(response.path);
-  }
-  ajaxCall(route, req, update);
+  axios.post('/addData', {
+    data: newData
+  })
+    .then((response) => {
+      $('#output-text').val(response.data.path);
+    })
 }
 
 async function getData(cid) {
-  const route = 'getData';
-  const req = { data: cid };
-  function update(response) {
-    $('#output-text').val(response[0]);
-  }
-  ajaxCall(route, req, update);
+  axios.post('/getData', {
+    data: cid
+  })
+    .then((response) => {
+      $('#output-text').val(response.data[0]);
+    })
 }
 
 async function getImage(cid) {

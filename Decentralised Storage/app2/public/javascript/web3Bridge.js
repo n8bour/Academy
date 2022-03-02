@@ -2,8 +2,10 @@ $(document).ready(() => {
   // DOM components
   const inputBox = document.getElementById('input-text');
   const cidBox = document.getElementById('ipfs-request');
+
   // Confirmation message
   console.log('web3Bridge.js loaded');
+
   // Function calls
   $('#add-data').click(() => {
     addData(inputBox.value);
@@ -14,19 +16,19 @@ $(document).ready(() => {
 });
 
 async function addData(newData) {
-  const route = 'addData';
-  const req = { data: newData };
-  function update(response) {
-    $('#output-text').val(response.path);
-  }
-  ajaxCall(route, req, update);
+  axios.post('/addData', {
+    data: newData
+  })
+    .then((response) => {
+      $('#output-text').val(response.data.path);
+    })
 }
 
 async function getData(cid) {
-  const route = 'getData';
-  const req = { data: cid };
-  function update(response) {
-    $('#output-text').val(response[0]);
-  }
-  ajaxCall(route, req, update);
+  axios.post('/getData', {
+    data: cid
+  })
+    .then((response) => {
+      $('#output-text').val(response.data[0]);
+    })
 }
