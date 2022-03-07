@@ -7,12 +7,8 @@ $(document).ready(() => {
   console.log('web3Bridge.js loaded');
 
   // Function calls
-  $('#add-data').click(() => {
-    addData(inputBox.value);
-  });
-  $('#get-data').click(() => {
-    getData(cidBox.value);
-  });
+  $('#add-data').click(() => { addData(inputBox.value); });
+  $('#get-data').click(() => { getData(cidBox.value); });
 });
 
 async function addData(newData) {

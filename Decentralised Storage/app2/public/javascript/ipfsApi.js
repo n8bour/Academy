@@ -2,6 +2,7 @@ const IPFS = require('ipfs');
 const all = require('it-all');
 
 let node;
+
 async function init() {
   node = await IPFS.create();
   console.log('IPFS node initialised.');
@@ -33,6 +34,7 @@ const ipfsApi = {
     }
   },
 };
+
 init();
 
 module.exports = ipfsApi;
