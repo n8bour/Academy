@@ -1,14 +1,14 @@
 const Arweave = require('arweave');
 const fs = require('fs');
 
-const arweave = Arweave.init({
-    host: 'arweave.net',
-    port: 443,
-    protocol: 'https'
-});
-
 let myKey;
-async function importKey() {
+let arweave;
+async function init() {
+    arweave = Arweave.init({
+        host: 'arweave.net',
+        port: 443,
+        protocol: 'https'
+    });
     fs.readFile('./key.json', 'utf8', (err, data) => {
         if (err) {
             console.log(`Error reading file from disk: ${err}`);
@@ -27,20 +27,46 @@ async function getWalletBalance() {
         let ar = arweave.ar.winstonToAr(balance);
 
         console.log(winston);
-        //125213858712
 
         console.log(ar);
-        //0.125213858712
     });
 
-    // let key = await arweave.wallets.generate();
-    // console.log(key);
-    // let transactionB = await arweave.createTransaction({
-    //     data: Buffer.from('Some data', 'utf8')
-    // }, key);
-    // console.log(transactionB);
-
+    arweave.wallets.getLastTransactionID(wallet).then((transactionId) => {
+        console.log(transactionId);
+        //3pXpj43Tk8QzDAoERjHE3ED7oEKLKephjnVakvkiHF8
+    });
 }
 
-importKey();
-getWalletBalance();
+const arweaveApi = {
+    async getBalance(_wallet) {
+        return await arweave.ar.winstonToAr(
+            await arweave.wallets.getBalance(_wallet)
+        );
+    },
+    async addData(_data) {
+        let transaction = await arweave.createTransaction({
+            data: Buffer.from(_data, 'utf8')
+        }, myKey);
+        console.log(transaction);
+        console.log(myKey);
+        await arweave.transactions.sign(transaction, myKey);
+        let uploader = await arweave.transactions.getUploader(transaction);
+        console.log("Uploading...")
+        while (!uploader.isComplete) {
+            await uploader.uploadChunk();
+            console.log(`${uploader.pctComplete}% complete, ${uploader.uploadedChunks}/${uploader.totalChunks}`);
+            return transaction;
+        }
+    },
+    async getTxStatus(_txId) {
+        arweave.transactions.getStatus(_txId).then(res => {
+            console.log("_txId");
+            console.log(_txId);
+            console.log(res);
+        });
+    }
+}
+
+init();
+
+module.exports = arweaveApi;

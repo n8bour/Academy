@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <title>IPFS Gateway</title>
+    <title>Arweave Gateway</title>
     <link rel="icon" href="./images/www.codecademy.com.ico" type="image/x-icon">
 
     <!-- External libraries -->
@@ -17,7 +17,13 @@
 </head>
 
 <body>
-    <h1>Welcome to Arweave</h1>
+    <div>
+        <h1>Welcome to Arweave</h1>
+    </div>
+    <div>
+        <input placeholder="Enter wallet..." type="text" id="wallet" name="wallet" size='50'>
+        <button id="get-balance" type="button">Get wallet balance</button>
+    </div>
     <p>Enter text you would like to save to Arweave into this box:</p>
     <textarea name="input-text" id="input-text" cols="58" rows="5"></textarea>
     <br />
@@ -28,12 +34,14 @@
     <br />
     <button id="add-file" type="button">Add file to Arweave</button>
     <p>Output from Arweave:</p>
-    <textarea placeholder="Awaiting message from IPFS node..." name="output-text" id="output-text" cols="58" rows="5"
+    <textarea placeholder="Awaiting message from Arweave..." name="output-text" id="output-text" cols="58" rows="5"
         readonly=true></textarea>
     <br />
     <p>Arweave node request:</p>
-    <input placeholder="Enter CID here." type="text" id="ipfs-request" name="ipfs-request" size='50'>
+    <input placeholder="Enter TxId here." type="text" id="tx-status" name="tx-status" size='50'>
     <br>
+    <button id="get-tx-status" type="button">Get tx status</button>
+
     <button id="get-data" type="button">Get data from Arweave</button>
     <button id="get-image" type="button">Get image from Arweave</button>
     <br>

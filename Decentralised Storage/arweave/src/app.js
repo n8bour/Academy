@@ -20,10 +20,38 @@ app.listen(PORT, () => {
   console.log('Server is up and running on http://127.0.0.1:' + PORT);
 });
 
+app.post('/getBalance', (req, res) => {
+  arweaveApi
+    .getBalance(req.body.data)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((e) => {
+      res.status(500, {
+        error: e,
+      });
+    });
+});
+
 app.post('/addData', (req, res) => {
   arweaveApi
-    .ipfsAdd(req.body.data)
+    .addData(req.body.data)
     .then((response) => {
+      console.log(response);
+      res.send(response);
+    })
+    .catch((e) => {
+      res.status(500, {
+        error: e,
+      });
+    });
+});
+
+app.post('/getTxStatus', (req, res) => {
+  arweaveApi
+    .getTxStatus(req.body.data)
+    .then((response) => {
+      console.log(response);
       res.send(response);
     })
     .catch((e) => {
@@ -63,6 +91,7 @@ app.post('/addFile', (req, res) => {
   arweaveApi
     .addFile(req.body.data)
     .then((response) => {
+
       res.send(response);
     })
     .catch((e) => {
