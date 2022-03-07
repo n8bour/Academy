@@ -17,7 +17,7 @@ async function addData(newData) {
   })
     .then((response) => {
       $('#output-text').val(response.data.path);
-    })
+    });
 }
 
 async function getData(cid) {
@@ -26,5 +26,5 @@ async function getData(cid) {
   })
     .then((response) => {
       $('#output-text').val(response.data[0]);
-    })
+    });
 }
