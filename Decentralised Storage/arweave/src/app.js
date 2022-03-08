@@ -37,7 +37,6 @@ app.post('/addData', (req, res) => {
   arweaveApi
     .addData(req.body.data)
     .then((response) => {
-      console.log(response);
       res.send(response);
     })
     .catch((e) => {
@@ -51,6 +50,33 @@ app.post('/getTxStatus', (req, res) => {
   arweaveApi
     .getTxStatus(req.body.data)
     .then((response) => {
+      res.send(response);
+    })
+    .catch((e) => {
+      res.status(500, {
+        error: e,
+      });
+    });
+});
+
+app.post('/getMyWallet', (req, res) => {
+  arweaveApi
+    .getMyWallet()
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((e) => {
+      res.status(500, {
+        error: e,
+      });
+    });
+});
+
+app.post('/getLastTx', (req, res) => {
+  arweaveApi
+    .getLastTx(req.body.data)
+    .then((response) => {
+      console.log("response");
       console.log(response);
       res.send(response);
     })

@@ -21,21 +21,26 @@
         <h1>Welcome to Arweave</h1>
     </div>
     <div>
+        <button id="get-wallet" type="button">Get my wallet</button>
+    </div>
+    <br>
+    <div>
         <input placeholder="Enter wallet..." type="text" id="wallet" name="wallet" size='50'>
         <button id="get-balance" type="button">Get wallet balance</button>
+    </div>
+    <div>
+        <button id="get-last-tx" type="button">Get last transaction</button>
+
     </div>
     <p>Enter text you would like to save to Arweave into this box:</p>
     <textarea name="input-text" id="input-text" cols="58" rows="5"></textarea>
     <br />
     <button id="add-data" type="button">Add text to Arweave</button>
     <br />
-    <p>Browse to image file you would like to upload:</p>
-    <input type="file" name="file" id="file">
-    <br />
-    <button id="add-file" type="button">Add file to Arweave</button>
-    <p>Output from Arweave:</p>
-    <textarea placeholder="Awaiting message from Arweave..." name="output-text" id="output-text" cols="58" rows="5"
-        readonly=true></textarea>
+    <p>
+        <textarea placeholder="Output from Arweave..." name="output-text" id="output-text" cols="58" rows="5"
+            readonly=true></textarea>
+    </p>
     <br />
     <p>Arweave node request:</p>
     <input placeholder="Enter TxId here." type="text" id="tx-status" name="tx-status" size='50'>

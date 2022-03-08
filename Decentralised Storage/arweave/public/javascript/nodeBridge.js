@@ -9,7 +9,9 @@ $(document).ready(() => {
   console.log('web3Bridge.js loaded');
 
   // Function calls  
+  $('#get-wallet').click(() => { getMyWallet(); });
   $('#get-balance').click(() => { getBalance(wallet.value); });
+  $('#get-last-tx').click(() => { getLastTx(wallet.value); });
   $('#add-data').click(() => { addData(inputBox.value); });
   $('#get-tx-status').click(() => { getTxStatus(requestBox.value); });
 
@@ -17,6 +19,22 @@ $(document).ready(() => {
   $('#add-file').click(() => { addFile(); });
   $('#get-image').click(() => { getImage(requestBox.value); });
 });
+
+async function getMyWallet() {
+  axios.post('/getMyWallet', {})
+    .then((response) => {
+      $('#output-text').val(response.data);
+    })
+}
+
+async function getLastTx(wallet) {
+  axios.post('/getLastTx', {
+    data: wallet
+  })
+    .then((response) => {
+      $('#output-text').val(response.data);
+    })
+}
 
 async function getBalance(wallet) {
   axios.post('/getBalance', {

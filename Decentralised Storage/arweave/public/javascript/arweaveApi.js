@@ -3,6 +3,7 @@ const fs = require('fs');
 
 let myKey;
 let arweave;
+let myWallet;
 async function init() {
     arweave = Arweave.init({
         host: 'arweave.net',
@@ -14,11 +15,14 @@ async function init() {
             console.log(`Error reading file from disk: ${err}`);
         } else {
             myKey = JSON.parse(data);
+            arweave.wallets.jwkToAddress(myKey).then((address) => {
+                myWallet = address;
+            });
         }
     });
 }
 
-const wallet = 'Q9UZc15TJheNV5doYquziQqjjsXlKZJK6pWZIHVr0XU';
+// const wallet = 'Q9UZc15TJheNV5doYquziQqjjsXlKZJK6pWZIHVr0XU';
 
 async function getWalletBalance() {
 
@@ -38,6 +42,9 @@ async function getWalletBalance() {
 }
 
 const arweaveApi = {
+    async getMyWallet() {
+        return await myWallet;
+    },
     async getBalance(_wallet) {
         return await arweave.ar.winstonToAr(
             await arweave.wallets.getBalance(_wallet)
@@ -47,8 +54,6 @@ const arweaveApi = {
         let transaction = await arweave.createTransaction({
             data: Buffer.from(_data, 'utf8')
         }, myKey);
-        console.log(transaction);
-        console.log(myKey);
         await arweave.transactions.sign(transaction, myKey);
         let uploader = await arweave.transactions.getUploader(transaction);
         console.log("Uploading...")
@@ -64,6 +69,13 @@ const arweaveApi = {
             console.log(_txId);
             console.log(res);
         });
+    },
+    async getLastTx(_wallet) {
+        return await arweave.wallets.getLastTransactionID(_wallet);
+        // arweave.wallets.getLastTransactionID(_wallet).then((transactionId) => {
+        //     console.log(transactionId);
+        //     return transactionId;
+        // });
     }
 }
 
