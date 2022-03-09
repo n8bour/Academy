@@ -32,21 +32,20 @@ describe('DogCoin', async () => {
     expect(_startHolders).to.equal(_newHolders.sub(ethers.BigNumber.from(1)));
   });
 
-  it.only('Checks holder is removed from array when balance = 0', async () => {
+  it('Checks holder is removed from array when balance = 0', async () => {
     await dogCoin.transfer(user1.address, 1);
 
-    const _location = await dogCoin.holdersArrayLocation(user1.address);
-    console.log('_location:', _location);
-
     const _startBalance = await dogCoin.balanceOf(user1.address);
-    console.log('_startBalance:', _startBalance);
+    const _startHolders = await dogCoin.holdersLength();
 
+    // Empty funds
     await dogCoin.connect(user1).transfer(owner.address, _startBalance);
 
-    const _newBalance = await dogCoin.balanceOf(user1.address);
-    console.log('_newBalance:', _newBalance);
-
+    // Check user has been removed
     const _location2 = await dogCoin.holdersArrayLocation(user1.address);
-    console.log('_location2:', _location2);
+    const _endHolders = await dogCoin.holdersLength();
+
+    expect(_startHolders).to.equal(_endHolders.add(ethers.BigNumber.from(1)));
+    expect(_location2).to.equal(0);
   });
 });
