@@ -69,7 +69,6 @@ contract DogCoin is ERC20 {
         view
         returns (uint256)
     {
-        
         return holderLocation[_holder];
     }
 
@@ -87,6 +86,19 @@ contract DogCoin is ERC20 {
                 holders[_holderIndex - 1] = holders[lastIndex];
             }
             holders.pop();
+        }
+        emit HolderRemoved(_holder);
+    }
+
+    function removeFromArrayLoop(address _holder) internal {
+
+        for (uint256 index = 0; index < holders.length - 1; index++) {
+            if (holders[index] == _holder) {
+                if (index != holders.length - 1) {
+                    holders[index] = holders[holders.length - 1];
+                }
+                holders.pop();
+            }
         }
         emit HolderRemoved(_holder);
     }

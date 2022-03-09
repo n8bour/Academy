@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/contracts/DogCoin.sol": {
-      "lastModificationDate": 1646826615083,
-      "contentHash": "fec4578fd12e70f8b2ae93d83b613458",
+      "lastModificationDate": 1646839754166,
+      "contentHash": "ee2b3c80177de5902f43a99f011d22ee",
       "sourceName": "contracts/DogCoin.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -293,6 +293,77 @@
       ],
       "artifacts": [
         "SafeMath"
+      ]
+    },
+    "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/contracts/Voting.sol": {
+      "lastModificationDate": 1646833395713,
+      "contentHash": "772056cec887ccb56ff9abdcfa038478",
+      "sourceName": "contracts/Voting.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "StateMachine"
+      ]
+    },
+    "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/contracts/VotingFactory.sol": {
+      "lastModificationDate": 1646838572359,
+      "contentHash": "7e67009b1e9f1434b5b04d7f41b94a2d",
+      "sourceName": "contracts/VotingFactory.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "Voter",
+        "VotingFactory"
       ]
     }
   }

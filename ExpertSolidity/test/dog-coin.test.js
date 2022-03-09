@@ -8,7 +8,7 @@ const SUPPLY = 1000000000;
 
 describe('DogCoin', async () => {
   beforeEach(async () => {
-    [owner, user1, user2] = await ethers.getSigners();
+    [owner, user1, user2, user3, user4] = await ethers.getSigners();
     const DogCoin = await ethers.getContractFactory('DogCoin');
     dogCoin = await DogCoin.deploy(SUPPLY);
   });
@@ -47,5 +47,31 @@ describe('DogCoin', async () => {
 
     expect(_startHolders).to.equal(_endHolders.add(ethers.BigNumber.from(1)));
     expect(_location2).to.equal(0);
+  });
+
+  it.only('Estimates gas usage', async () => {
+    await dogCoin.transfer(user1.address, 1);
+    await dogCoin.transfer(user2.address, 1);
+    await dogCoin.transfer(user3.address, 1);
+    await dogCoin.transfer(user4.address, 1);
+
+    const _startBalance = await dogCoin.balanceOf(user2.address);
+    const _startHolders = await dogCoin.holdersLength();
+
+    const estimation = await dogCoin
+      .connect(user2)
+      .estimateGas.transfer(owner.address, _startBalance);
+
+    console.log(estimation);
+
+    // const _endHolders = await dogCoin.holdersLength();
+
+    // console.log(_startHolders);
+
+    // console.log(_endHolders);
+
+    // // const _location2 = await dogCoin.holdersArrayLocation(user2.address);
+    // // expect(_location2).to.equal(0);
+    // expect(_startHolders).to.equal(_endHolders.add(ethers.BigNumber.from(1)));
   });
 });
