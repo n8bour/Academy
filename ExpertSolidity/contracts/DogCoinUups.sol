@@ -8,6 +8,22 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "hardhat/console.sol";
 
+// [tom@tom-r7 ExpertSolidity]$ npx hardhat run --network localhost scripts/deploy_upgradeable_dog.js
+// Compiled 1 Solidity file successfully
+// Deploying DogCoinUups...
+// DogCoinUups deployed to: 0x2aB3C5B5e0bcb29ca85EF719418e51822e4e9159
+// [tom@tom-r7 ExpertSolidity]$ npx hardhat console --network localhost
+// Welcome to Node.js v16.14.0.
+// Type ".help" for more information.
+// > npx hardhat console --network localhost
+// > const Dog = await ethers.getContractFactory('DogCoinUups');
+// undefined
+// > const dog = await Dog.attach('0x2aB3C5B5e0bcb29ca85EF719418e51822e4e9159');
+// undefined
+// > (await dog.version());
+// '1.0'
+// > 
+
 contract DogCoinUups is
     Initializable,
     ERC20Upgradeable,
@@ -27,14 +43,14 @@ contract DogCoinUups is
 
     uint256 internal totalSupply_;
 
-    constructor(uint256 total) initializer {
+    string public version;
+
+    function initialize(uint256 total) public initializer {
         totalSupply_ = total;
         balances[msg.sender] = totalSupply_;
         holders.push(msg.sender);
         holderLocation[msg.sender] = holders.length;
-    }
-
-    function initialize() public initializer {
+        version = "1.0";
         __ERC20_init("DogCoin", "DOG");
         __Ownable_init();
         __UUPSUpgradeable_init();
