@@ -76,8 +76,6 @@ app.post('/getLastTx', (req, res) => {
   arweaveApi
     .getLastTx(req.body.data)
     .then((response) => {
-      console.log("response");
-      console.log(response);
       res.send(response);
     })
     .catch((e) => {
@@ -89,35 +87,8 @@ app.post('/getLastTx', (req, res) => {
 
 app.post('/getData', (req, res) => {
   arweaveApi
-    .ipfsGet(req.body.data)
+    .getTxData(req.body.data)
     .then((response) => {
-      res.send(response);
-    })
-    .catch((e) => {
-      res.status(500, {
-        error: e,
-      });
-    });
-});
-
-app.post('/getImage', (req, res) => {
-  arweaveApi
-    .ipfsGetImage(req.body.data)
-    .then((response) => {
-      res.send(response);
-    })
-    .catch((e) => {
-      res.status(500, {
-        error: e,
-      });
-    });
-});
-
-app.post('/addFile', (req, res) => {
-  arweaveApi
-    .addFile(req.body.data)
-    .then((response) => {
-
       res.send(response);
     })
     .catch((e) => {
