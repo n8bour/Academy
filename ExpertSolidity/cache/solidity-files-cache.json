@@ -377,8 +377,8 @@
       ]
     },
     "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/contracts/DogCoinUups.sol": {
-      "lastModificationDate": 1646920320313,
-      "contentHash": "9764ccf0981996302c13cb515abe9bb9",
+      "lastModificationDate": 1647523911881,
+      "contentHash": "37d7c4142c5f2b200916c310369ebac6",
       "sourceName": "contracts/DogCoinUups.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -873,6 +873,119 @@
       ],
       "artifacts": [
         "StorageSlotUpgradeable"
+      ]
+    },
+    "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/contracts/DogCoinUupsV2.sol": {
+      "lastModificationDate": 1647524081313,
+      "contentHash": "cfd8c59cf970ddde35a48d41efa433e0",
+      "sourceName": "contracts/DogCoinUupsV2.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./DogCoinUups.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "DogCoinUupsV2"
+      ]
+    },
+    "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/contracts/VotingFactoryClone.sol": {
+      "lastModificationDate": 1647534003638,
+      "contentHash": "1ee1340e6f8a013ce3ce48e2108cd43f",
+      "sourceName": "contracts/VotingFactoryClone.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/proxy/Clones.sol",
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.4"
+      ],
+      "artifacts": [
+        "VoterClone"
+      ]
+    },
+    "/home/tom/Code/Extropy/24_extropy_tutorials/Academy/ExpertSolidity/node_modules/@openzeppelin/contracts/proxy/Clones.sol": {
+      "lastModificationDate": 1646823804800,
+      "contentHash": "f741efede98f234458f02f818f80c7f3",
+      "sourceName": "@openzeppelin/contracts/proxy/Clones.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Clones"
       ]
     }
   }

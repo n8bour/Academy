@@ -27,4 +27,10 @@ describe('Voting Factory', async () => {
     const votes = await votingFactory.getMyCount();
     expect(votes).to.equal(1);
   });
+
+  it.only('Generates contract and measures gas', async () => {
+    const estimateGas = await votingFactory.estimateGas.createVoter();
+    console.log(estimateGas);
+  });
+
 });

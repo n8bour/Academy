@@ -43,14 +43,14 @@ contract DogCoinUups is
 
     uint256 internal totalSupply_;
 
-    string public version;
+    uint256 public version;
 
     function initialize(uint256 total) public initializer {
         totalSupply_ = total;
         balances[msg.sender] = totalSupply_;
         holders.push(msg.sender);
         holderLocation[msg.sender] = holders.length;
-        version = "1.0";
+        version = 1;
         __ERC20_init("DogCoin", "DOG");
         __Ownable_init();
         __UUPSUpgradeable_init();
