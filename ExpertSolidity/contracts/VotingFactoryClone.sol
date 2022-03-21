@@ -17,11 +17,17 @@ contract VoterClone {
         uint256 _requiredStage
     );
 
+    bool isInitialised = false;
+    address[] public voters;
+
     Stages public stage = Stages.Proposed;
-    uint256 public creationTime = block.timestamp;
+
+    uint256 public creationTime;
 
     uint256 private _vote;
     address private _owner;
+
+    event NewVoter(address _address);
 
     modifier onlyOwner() {
         require(msg.sender == _owner, "You're not the owner of the contract");
@@ -37,8 +43,11 @@ contract VoterClone {
         _;
     }
 
-    constructor() {
-        _owner = msg.sender;
+    function initialize(address owner) public {
+        require(!isInitialised, "Contract already initialized");
+        isInitialised = true;
+        _owner = owner;
+        creationTime = block.timestamp;
     }
 
     function getCount() public view returns (uint256) {
@@ -58,9 +67,9 @@ contract VoterClone {
     }
 
     function cloneContract() external returns (address child) {
-         child = Clones.clone(address(this));
-        // console.log("address");
-        // console.log(child);
-        // return child;
+        child = Clones.clone(address(this));
+        voters.push(child);
+        emit NewVoter(child);
+        return child;
     }
 }

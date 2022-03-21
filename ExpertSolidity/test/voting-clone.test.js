@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const { Contract } = require('ethers');
 const { ethers } = require('hardhat');
 
-let owner, voterClone, voterCloned;
+let owner, voterClone, voterCloned, clonedAddress;
 
 async function deploy(name, ...params) {
   const Contract = await ethers.getContractFactory(name);
@@ -13,7 +13,8 @@ describe('Voting Factory', async () => {
   beforeEach(async () => {
     [owner, user1, user2] = await ethers.getSigners();
     voterClone = await deploy('VoterClone');
-    voterCloned = await voterClone.cloneContract();
+    await voterClone.initialize(owner.address);
+    await voterClone.cloneContract();
   });
 
   it('Generates contract and measures gas', async () => {
@@ -21,7 +22,13 @@ describe('Voting Factory', async () => {
   });
 
   it('Checks functionality of cloned contract', async () => {
-    const count = await voterCloned.getCount();
-    console.log(count);
+    clonedAddress = await voterClone.voters(0);
+    voterCloned = await (
+      await ethers.getContractFactory('VoterClone')
+    ).attach(clonedAddress);
+    await voterCloned.initialize(owner.address);
+    await voterCloned.nextStage();
+    await voterCloned.increment();
+    expect(await voterCloned.getCount()).to.equal(1);
   });
 });
