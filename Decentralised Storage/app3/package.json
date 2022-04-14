@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "ipfs": "^0.55.3",
+    "ipfs": "^0.62.2",
     "it-all": "^1.0.5"
   }
 }

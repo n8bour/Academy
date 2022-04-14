@@ -5,45 +5,47 @@ const express = require('express');
 const path = require('path');
 
 const ipfsApi = require('../public/javascript/ipfs_api.js');
-const web3Funs = require('../public/javascript/web3_funs.js');
+const web3Funs = require('../public/javascript/ethers_funs.js')
 
-const app = express();
+const app = express()
 
-const publicDirPath = path.join(__dirname, '../public');
+const publicDirPath = path.join(__dirname, '../public')
 
-app.use(express.static(publicDirPath, { extensions: ['html'] }));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: false, limit: '50mb' }));
+app.use(express.static(publicDirPath, { extensions: ['html'] }))
+app.use(express.json({ limit: '50mb' }))
+app.use(express.urlencoded({ extended: false, limit: '50mb' }))
 
 app.get('', (req, res) => {
-  res.sendFile(publicDirPath + "/ipfs.html");
-});
+  res.sendFile(publicDirPath + '/ipfs.html')
+})
 
 app.listen(3000, () => {
-  console.log('Server is up and running on http://127.0.0.1:3000');
-});
+  console.log('Server is up and running on http://127.0.0.1:3000')
+})
 
 app.post('/mintNft', (req, res) => {
-  web3Funs.mintNft(req.body.params)
+  web3Funs
+    .mintNft(req.body.params)
     .then((response) => {
-      res.send(response);
+      res.send(response)
     })
-    .catch(e => {
+    .catch((e) => {
       res.status(500, {
         error: e,
-      });
+      })
     })
 })
 
 app.post('/getNfts', (req, res) => {
-  web3Funs.getNfts(req.body.params)
+  web3Funs
+    .getNfts(req.body.params)
     .then((response) => {
-      res.send(response);
+      res.send(response)
     })
-    .catch(e => {
+    .catch((e) => {
       res.status(500, {
         error: e,
-      });
+      })
     })
 })
 

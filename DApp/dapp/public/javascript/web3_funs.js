@@ -43,7 +43,9 @@ const web3Funs = {
                 .getNfts(address).call();
             let nftArr = [];
             for (const tokenId of nfts) {
-                nftArr.push({ [tokenId]: await web3Funs.getUri(tokenId) });
+                if (tokenId.toString() != 0) {
+                  nftArr.push({ [tokenId]: await web3Funs.getUri(tokenId) })
+                }
             }
             return { 0: nftArr }
         } catch (e) {

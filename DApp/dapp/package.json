@@ -12,9 +12,10 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.3",
     "dotenv": "^10.0.0",
+    "ethers": "^5.6.3",
     "express": "^4.17.1",
-    "ipfs": "^0.60.2",
+    "ipfs": "^0.62.2",
     "it-all": "^1.0.5",
-    "web3": "^1.6.1"
+    "web3": "^1.7.3"
   }
 }
