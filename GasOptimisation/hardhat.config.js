@@ -20,11 +20,19 @@ module.exports = {
   solidity: {
     compilers: [
       {
-        version: "0.8.0",
+        version: "0.8.13",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 300,
+          },
+        },
       },
     ],
   },
   gasReporter: {
     currency: "USD",
+    gasPrice: 6.4,
+    token: "ETH",
   },
 };

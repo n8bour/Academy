@@ -19,6 +19,7 @@ describe("Gas1", function () {
     gasContract = await Gas1.deploy(admins, 10000);
     await gasContract.deployed();
   });
+  
   it("Check that admins have been added", async function () {
     expect(await gasContract.administrators(0)).to.equal(
       "0x3243Ed9fdCDE2345890DDEAf6b083CA4cF0F68f2"
